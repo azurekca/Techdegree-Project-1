@@ -15,6 +15,7 @@ project 1 - A Random Quote Generator
  * source - a string containing the creator of the quote
  * citation - the Star Trek show the quote is from
  * episode - the name of the Star Trek episode the quote is from
+ * stardate - The in-universe date of the quote (using in place of year)
  */
 const quotes = [
 	{
@@ -63,13 +64,33 @@ function getRandomQuote() {
 
 /***
  * `printQuote` function
- * 1 - call the getRandomQuote function 
- * 2 - use the returned quote object to build a string of HTML and quote properties
- * 3 - use that string to display a random quote in the browser 
+ * 
+ *  Gets a random quote from tha quotes array and displays it in the browser
 ***/
 function printQuote() {
-	const quote = getRandomQuote();
-	console.log(quote.quote, quote.source);
+  const quote = getRandomQuote();
+  // build html for quote and source
+	let html = `
+    <p class="quote">${quote.quote}</P>
+    <p class="source">${quote.source}
+  `;
+	// check for citation and add to html if found
+	if (quote.citation) {
+    html += `<span class="citation">${quote.citation}</span>`;
+    // check for episode and add to html if found
+    // only show episode if there's a citation
+		if (quote.episode) {
+			html += `<span class="episode">${quote.episode}</span>`;
+		}
+	}
+	// check for stardate and add to html if found (**using satrdate instead of year)
+	if (quote.stardate) {
+		html += `<span class="year">stardate ${quote.stardate}</span>`;
+	}
+	// add closing 'p' tag to html string
+  html += '</p>';
+  // display html in the browser
+	document.getElementById('quote-box').innerHTML = html;
 }
 
 /***

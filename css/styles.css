@@ -110,6 +110,18 @@ h1 {
   font-style: normal;
 }
 
+.episode {
+  font-style: italic;
+}
+
+.episode:before {
+  content: "–";
+}
+
+.year {
+  font-variant: small-caps;
+}
+
 .year:before {
   content: ", ";
   font-style: normal;
