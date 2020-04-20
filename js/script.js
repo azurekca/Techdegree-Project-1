@@ -10,12 +10,12 @@ project 1 - A Random Quote Generator
 /** 
  * `quotes` array 
  *
- * Array of objects each containg a Star Trek quote
- * quote - a string containing the text of a quote
- * source - a string containing the creator of the quote
- * citation - the Star Trek show the quote is from
- * episode - the name of the Star Trek episode the quote is from
- * stardate - The in-universe date of the quote (using in place of year)
+ * Array of objects each containing a Star Trek quote
+ *  quote - a string containing the text of a quote
+ *  source - a string containing the creator of the quote
+ *  citation - the Star Trek show the quote is from
+ *  episode - the name of the Star Trek episode the quote is from
+ *  stardate - The in-universe date of the quote (using in place of year)
  */
 const quotes = [
 	{
@@ -62,23 +62,22 @@ function getRandomQuote() {
 	return quotes[randomIndex];
 }
 
-/***
+/**
  * `printQuote` function
- * 
  *  Gets a random quote from tha quotes array and displays it in the browser
-***/
+*/
 function printQuote() {
-  const quote = getRandomQuote();
-  // build html for quote and source
+	const quote = getRandomQuote();
+	// build html for quote and source
 	let html = `
     <p class="quote">${quote.quote}</P>
     <p class="source">${quote.source}
   `;
 	// check for citation and add to html if found
 	if (quote.citation) {
-    html += `<span class="citation">${quote.citation}</span>`;
-    // check for episode and add to html if found
-    // only show episode if there's a citation
+		html += `<span class="citation">${quote.citation}</span>`;
+		// check for episode and add to html if found
+		// only show episode if there's a citation
 		if (quote.episode) {
 			html += `<span class="episode">${quote.episode}</span>`;
 		}
@@ -88,10 +87,31 @@ function printQuote() {
 		html += `<span class="year">stardate ${quote.stardate}</span>`;
 	}
 	// add closing 'p' tag to html string
-  html += '</p>';
-  // display html in the browser
-	document.getElementById('quote-box').innerHTML = html;
+	html += '</p>';
+	// display html in the browser
+  document.getElementById('quote-box').innerHTML = html;
+  // change background colour
+  document.body.style.backgroundColor = randomRGB();
 }
+
+// change the displayed quote every 10 seconds
+setInterval(printQuote, 10000);
+
+// return a random rgb colour
+function randomRGB() {
+	// function to get random number between 0 and 125 so it is never too light
+	const random255 = () => {
+		return Math.floor(Math.random() * 125);
+	};
+	// assign a random colour to each colour variable
+	const red = random255();
+	const green = random255();
+	const blue = random255();
+	// build and return rgb
+	return `rgb(${red}, ${green}, ${blue})`;
+}
+
+console.log(randomRGB());
 
 /***
  * click event listener for the print quote button
