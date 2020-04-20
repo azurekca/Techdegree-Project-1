@@ -19,6 +19,12 @@ project 1 - A Random Quote Generator
  */
 const quotes = [
 	{
+		quote    : 'KHAAAAAAAAAAAAAAAAN!!!!!',
+		source   : 'Captain James T. Kirk',
+		citation : 'Star Trek II',
+		year     : 1982
+	},
+	{
 		quote    : 'It is possible to commit no mistakes and still lose. That is not weakness, that is life.',
 		source   : 'Captain Jean-Luc Picard',
 		citation : 'Star Trek: The Next Generation',
@@ -82,24 +88,27 @@ function printQuote() {
 			html += `<span class="episode">${quote.episode}</span>`;
 		}
 	}
-	// check for stardate and add to html if found (**using satrdate instead of year)
-	if (quote.stardate) {
+	// check for year or stardate and add to html if found
+	if (quote.year) {
+		html += `<span class="year">${quote.year}</span>`;
+	} else if (quote.stardate) {
 		html += `<span class="year">stardate ${quote.stardate}</span>`;
 	}
 	// add closing 'p' tag to html string
 	html += '</p>';
 	// display html in the browser
-  document.getElementById('quote-box').innerHTML = html;
-  // change background colour
-  document.body.style.backgroundColor = randomRGB();
+	document.getElementById('quote-box').innerHTML = html;
+	// change background colour
+	document.body.style.backgroundColor = randomDarkRGB();
 }
 
 // change the displayed quote every 10 seconds
 setInterval(printQuote, 10000);
 
-// return a random rgb colour
-function randomRGB() {
-	// function to get random number between 0 and 125 so it is never too light
+/**
+ * function to get random dark RGB
+ */
+function randomDarkRGB() {
 	const random255 = () => {
 		return Math.floor(Math.random() * 125);
 	};
