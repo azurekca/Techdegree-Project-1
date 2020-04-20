@@ -120,8 +120,6 @@ function randomDarkRGB() {
 	return `rgb(${red}, ${green}, ${blue})`;
 }
 
-console.log(randomRGB());
-
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
