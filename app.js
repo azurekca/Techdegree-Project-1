@@ -1,4 +1,8 @@
 /**
+ * The Random Quote Generator picks a quote at random and displays it
+ */
+
+/**
  * Array of objects each containg a Star Trek quote
  * quote - a string containing the text of a quote
  * source - a string containing the creator of the quote
@@ -31,3 +35,19 @@ const starTrekQuotes = [
     episode: 'Chain of Command'
 	}
 ];
+
+/**
+ * generate random number between 0 and up to, but not including, highNumber
+ * @param {number} highNumber 
+ * @returns {number} a random number
+ */
+function getRandomNumber(highNumber) {
+	return Math.floor(Math.random * highNumber);
+}
+
+// get a random quote from the quotes array
+const quote = () => {
+	const randomIndex = getRandomNumber(starTrekQuotes.length);
+	return starTrekQuotes(randomIndex);
+}
+// display quote
